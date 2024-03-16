@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevBook - {{ .User.Username }}</title>
+  <link rel="stylesheet" href="/assets/css/bootstrap.css" />
+</head>
+
+<body>
+  {{ template "header" }}
+
+  {{ $FollowedByCurrentUser := false}}
+  {{ range .User.Followers }}
+  {{ if (eq .ID $.LoggedUserID )}}
+  {{ $FollowedByCurrentUser = true }}
+  {{end}}
+  {{ end }}
+
+  <div class="container-fluid">
+    <div class="row mt-4">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">User Profile</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ .User.Username }} - {{ .User.Nick }} - Member Since {{
+              .User.CreatedAt.Format "02/01/06"}}</h6>
+            <p class="card-text">
+              <a href="#" style="text-decoration: none;" data-bs-toggle="modal" data-bs-target="#modal-followers">
+                Followers: {{ len .User.Followers }}
+              </a>
+            </p>
+            <p class="card-text">
+              <a href="#" style="text-decoration: none;" data-bs-toggle="modal" data-bs-target="#modal-following">
+                Following: {{ len .User.Following }}
+              </a>
+            </p>
+            <a href="#" class="card-link">
+              {{ if $FollowedByCurrentUser }}
+              <button id="unfollow" class="btn btn-info" data-user-id="{{ .User.ID }}">Unfollow</button>
+              {{ else }}
+              <button id="follow" class="btn btn-info" data-user-id="{{ .User.ID }}">Follow</button>
+              {{ end }}
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="row mt-4">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Posts from {{ .User.Nick }}</h5>
+            <p class="card-text">
+              {{ range .User.Posts }}
+              {{ template "post-without-permissions" . }}
+              {{ else }}
+            <p class="text-muted text-center">No posts yet!</p>
+            {{ end }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{ template "modal-followers" .User }}
+  {{ template "modal-following" .User }}
+
+  {{ template "footer" }}
+  {{ template "scripts" }}
+  <script src="/assets/js/posts.js"></script>
+  <script src="/assets/js/user.js"></script>
+</body>
+
+</html>
