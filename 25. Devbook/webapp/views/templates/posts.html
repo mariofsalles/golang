@@ -1,0 +1,37 @@
+{{ define "like-post"}}
+<i class="fas-sharp fa-solid fa-heart like-post" style="cursor: pointer;"></i><span>{{ .Likes }}</span>
+{{ end}}
+
+{{ define "edit-post"}}
+<a href="/posts/{{ .ID }}/update" style="text-decoration: none;"><i class="fa-solid fa-pen-to-square"></i></a>
+{{ end}}
+
+{{ define "delete-post"}}
+<i class="fa-solid fa-trash text-danger delete-post" style="cursor: pointer;"></i>
+{{ end}}
+
+
+{{ define "post-header" }}
+<h1 class="display-5 fw-bold">{{ .Title }}</h1>
+<p class="col-md-8 fs-4">{{ .Content }}</p>
+<a href="/users/{{ .AuthorID }}" style="text-decoration: none;">{{ .AuthorNick }} - {{ .CreatedAt.Format "02/01/06" }}</a>
+<!-- Jan 2 15:04:05 2006   
+  Jan 02 03:04:05 06  PM
+  1 2 3 4 5 6
+  -->
+<hr class="my-4">
+{{ end }}
+
+{{ define "post-with-permissions" }}
+<div class="container-fluid py-5" data-post-id="{{ .ID }}">
+  {{ template "post-header" . }}
+  <p>{{ template "like-post" . }} {{ template "edit-post" . }} {{ template "delete-post" . }}</p>
+</div>
+{{ end }}
+
+{{ define "post-without-permissions" }}
+<div class="container-fluid py-5" data-post-id="{{ .ID }}">
+  {{ template "post-header" . }}
+  <p>{{ template "like-post" . }}</p>
+</div>
+{{ end }}

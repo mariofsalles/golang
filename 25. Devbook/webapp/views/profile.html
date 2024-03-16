@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevBook - My profile</title>
+  <link rel="stylesheet" href="/assets/css/bootstrap.css" />
+</head>
+
+<body>
+  {{ template "header" }}
+
+  <div class="container-fluid">
+
+    <div class="row mt-4">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              My Profile
+            </h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ .Username }} - {{ .Nick }} - Member Since {{ .CreatedAt.Format
+              "02/01/06"}}</h6>
+            <p class="card-text">
+              <a href="#" style="text-decoration: none;" data-bs-toggle="modal" data-bs-target="#modal-followers">
+                Followers: {{ len .Followers }}
+              </a>
+            </p>
+            <p class="card-text">
+              <a href="#" style="text-decoration: none;" data-bs-toggle="modal" data-bs-target="#modal-following">
+                Following: {{ len .Following }}
+              </a>
+            </p>
+            <div class="row">
+              <div class="col-12">
+                <a href="/update-profile" class="card-lik">
+                  <button class="btn btn-info">Update User</button>
+                </a>
+                <a href="/update-password" class="card-lik">
+                  <button class="btn btn-info">Update Password</button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">My Posts</h5>
+            <p class="card-text">
+              {{ range .Posts }}
+              {{ template "post-with-permissions" . }}
+              {{ else }}
+            <p class="text-muted text-center">No posts yet!</p>
+            {{ end }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <a id="delete-user" class="card-link">
+        <button class="btn btn-danger">Delete Profile</button>
+      </a>
+    </div>
+
+
+  </div>
+
+  {{ template "footer" }}
+
+  {{ template "modal-followers" . }}
+  {{ template "modal-followers" . }}
+
+  {{ template "scripts" }}
+  <script src="/assets/js/posts.js"></script>
+  <script src="/assets/js/user.js"></script>*
+</body>
+
+</html>
