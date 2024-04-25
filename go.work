@@ -1,7 +1,6 @@
 go 1.21.6
 
 use (
-	"./00. autentication"
 	"./01. Pacotes"
 	"./17. MiniAplicacao"
 	"./19. Testes Automatizados/19.1 Introducao"
