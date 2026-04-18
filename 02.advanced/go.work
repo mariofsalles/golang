@@ -2,5 +2,6 @@ go 1.26.2
 
 use (
 	./01.hello-world
-	./02.slices-arrays-ponteiros/02.1.introducao
+	./02.slices-arrays-ponteiros/02.01.introducao
+	./02.slices-arrays-ponteiros/02.02.copy
 )
