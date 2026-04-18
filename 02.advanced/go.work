@@ -1,3 +1,6 @@
 go 1.26.2
 
-use ./1.hello-world
+use (
+	./01.hello-world
+	./02.slices-arrays-ponteiros/02.1.introducao
+)
