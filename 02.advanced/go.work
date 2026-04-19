@@ -10,4 +10,5 @@ use (
 	./02.slices-arrays-ponteiros/02.06.map-filter-reduce
 	./03.maps/03.01.introducao
 	./03.maps/03.02.race-condition
+	./03.maps/03.03.mutex
 )
