@@ -11,4 +11,5 @@ use (
 	./03.maps/03.01.introducao
 	./03.maps/03.02.race-condition
 	./03.maps/03.03.mutex
+	./03.maps/03.04.syncmap
 )
