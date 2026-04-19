@@ -9,4 +9,5 @@ use (
 	./02.slices-arrays-ponteiros/02.05.deep-copy-ponteiro
 	./02.slices-arrays-ponteiros/02.06.map-filter-reduce
 	./03.maps/03.01.introducao
+	./03.maps/03.02.race-condition
 )
