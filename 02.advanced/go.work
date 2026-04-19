@@ -7,4 +7,5 @@ use (
 	./02.slices-arrays-ponteiros/02.03.deep-copy
 	./02.slices-arrays-ponteiros/02.04.ponteiros
 	./02.slices-arrays-ponteiros/02.05.deep-copy-ponteiro
+	./02.slices-arrays-ponteiros/02.06.map-filter-reduce
 )
